@@ -1,2 +1,2 @@
 # BinarySearchTree
-Simple Binary Search Tree with BFS, Recursive DFS, and Iterative DFS algorithms for printing
+Simple Binary Search Tree implemented in C with BFS, Recursive DFS, and Iterative DFS algorithms for printing
