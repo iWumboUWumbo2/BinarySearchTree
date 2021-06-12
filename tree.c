@@ -124,7 +124,8 @@ void tree_bfs(const tree_t* tree) {
 	visited[tree->root->number] = 1;
 	
 	while(deque.size > 0) {
-		tree_node_t* node = deque_dequeue(&deque)->value;
+		deque_node_t* dqnode = deque_dequeue(&deque);
+		tree_node_t* node = dqnode->value;
 		printf("(%d: %d) ", node->number, node->value);
 		
 		tree_node_t* adjNodes[2] = {node->ltNode, node->rtNode};
@@ -136,6 +137,8 @@ void tree_bfs(const tree_t* tree) {
 				}
 			}
 		}
+		
+		free(dqnode);
 	}
 	
 	free(visited);
@@ -153,10 +156,11 @@ void tree_dfs_iter(const tree_t* tree) {
 	deque_init(&stack);
 	int* visited = calloc(tree->size, sizeof(int));
 	
-	deque_enqueue(&stack, deque_node_init(tree->root));
 	
+	deque_enqueue(&stack, deque_node_init(tree->root));
 	while (stack.size > 0) {
-		tree_node_t* node = deque_pop(&stack)->value;
+		deque_node_t* dqnode = deque_pop(&stack);
+		tree_node_t* node = dqnode->value;
 		printf("(%d: %d) ", node->number, node->value);
 		
 		if (!visited[node->number]) {
@@ -168,6 +172,8 @@ void tree_dfs_iter(const tree_t* tree) {
 				}
 			}
 		}
+		
+		free(dqnode);
 	}
 	
 	free(visited);
